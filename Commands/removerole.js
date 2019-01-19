@@ -17,7 +17,7 @@ module.exports = class addrole {
 
         if (!rMember) return message.reply("Couldn't find user");
 
-        let role = args.join(" ").slice(22);
+        let role = args.slice(-1).join(" ");﻿
 
         if (!role) return message.reply("Please specify a role");
 
@@ -27,7 +27,7 @@ module.exports = class addrole {
 
         if (rMember.roles.has(gRole.id));
 
-        await (rMember.removeRole(gRole.id));
+        rMember.removeRole(gRole.id);
 
         try {
 

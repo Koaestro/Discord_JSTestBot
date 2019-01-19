@@ -10,33 +10,6 @@ const CH = new CommandHandler({
 
 });
 
-
-// bot.commands = new Discord.Collection();
-//
-// fs.readdir("./commands/", (err, files) => {
-//
-//     if (err) console.log(err);
-//
-//     let jsfile = files.filter(f => f.split(".").pop() === "js");
-//
-//     if (jsfile.length <= 0) {
-//
-//         console.log ("Could not find commands.");
-//         return;
-//
-//     }
-//
-//     jsfile.forEach((f, i) => {
-//
-//     let props = require(`./commands/${f}`);
-//     console.log(`${f} loaded`);
-//
-//     bot.commands.set(props.help.name, props);
-//     });
-//
-// });
-
-
 bot.on("ready", () => {
   console.log("\nReady!");
 
@@ -55,14 +28,10 @@ bot.on("message", (message) => {
     if (!cmd) return;
 
     try{
-        cmd.run(bot, message, args)
+        cmd.run(bot, message, args.slice(1))
     } catch(e){
         console.log(e);
     }
-
-    // let commandFile = bot.commands.get(cmd.slice(prefix.length));
-    //
-    // if (commandFile) commandFile.run(bot, message, args);
 
 })
 

@@ -27,7 +27,7 @@ module.exports = class addrole {
 
         if (rMember.roles.has(gRole.id));
 
-        await (rMember.addRole(gRole.id));
+        rMember.addRole(gRole.id);
 
         try {
 
