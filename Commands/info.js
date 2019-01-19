@@ -1,13 +1,23 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const bot = new Discord.Client();
 
-exports.command = function (Discord, client, message) {
-    let msgEmbed = new Discord.RichEmbed()
-    .setDescription("JSTestBot Info")
-    .setColor("#1c0eb7")
-    .setThumbnail(client.user.displayAvatarURL)
-    .addField("Name", client.user.username)
-    .addField("Joined", client.user.createdAt);
+module.exports = class info {
 
-    message.channel.send(msgEmbed);
+    constructor(){
+        this.name = "info",
+        this.alias = "i",
+        this.usage = ">info"
+    }
+
+    run(bot, message, args) {
+
+        let msgEmbed = new Discord.RichEmbed()
+             .setDescription("JSTestBot Info")
+             .setColor("#1c0eb7")
+             .setThumbnail(bot.user.displayAvatarURL)
+             .addField("Name", bot.user.username)
+             .addField("Joined", bot.user.createdAt);
+             message.channel.send(msgEmbed);
+
+    }
 }

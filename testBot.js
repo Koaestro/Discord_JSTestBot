@@ -1,38 +1,69 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const bot = new Discord.Client();
 const tokenfile = require("./tokenfile.json");
+// const fs = require("fs");
+const { CommandHandler } = require(`djs-commands`);
+const CH = new CommandHandler({
 
-var prefix = ">";
+    folder: __dirname + "/commands/",
+    prefix: ['>']
 
-function SearchForCommand(command, message) {
-
-    switch (command){
-        case "test":
-            message.channel.send("Testing 1 2 3");
-            break;
-
-        case "info":
-            require("./commands/info.js").command(Discord, client, message);
-            break;
-
-        default:
-            return "No command found.";
-            break;
-    }
-}
-
-client.on("ready", () => {
-  console.log("I am ready!");
-
-  client.channels.find(channel => channel.name === "status").send(client.user.username + " Connected!")
 });
 
-client.on("message", (message) => {
-    if (message.content.startsWith(prefix)) {
 
-        SearchForCommand(String(message).substring(1), message);
+// bot.commands = new Discord.Collection();
+//
+// fs.readdir("./commands/", (err, files) => {
+//
+//     if (err) console.log(err);
+//
+//     let jsfile = files.filter(f => f.split(".").pop() === "js");
+//
+//     if (jsfile.length <= 0) {
+//
+//         console.log ("Could not find commands.");
+//         return;
+//
+//     }
+//
+//     jsfile.forEach((f, i) => {
+//
+//     let props = require(`./commands/${f}`);
+//     console.log(`${f} loaded`);
+//
+//     bot.commands.set(props.help.name, props);
+//     });
+//
+// });
 
+
+bot.on("ready", () => {
+  console.log("\nReady!");
+
+  bot.channels.find(channel => channel.name === "status").send(bot.user.username + " Connected!")
+});
+
+bot.on("message", (message) => {
+
+    if (message.author.bot) return;
+
+    let args = message.content.split(" ");
+    let command = args[0];
+
+    let cmd = CH.getCommand(command);
+
+    if (!cmd) return;
+
+    try{
+        cmd.run(bot, message, args)
+    } catch(e){
+        console.log(e);
     }
+
+    // let commandFile = bot.commands.get(cmd.slice(prefix.length));
+    //
+    // if (commandFile) commandFile.run(bot, message, args);
+
 })
 
-client.login(tokenfile.token);
+bot.login(tokenfile.token);
