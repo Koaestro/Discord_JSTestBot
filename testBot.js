@@ -12,7 +12,7 @@ function SearchForCommand(command, message) {
             break;
 
         case "info":
-            require("./Commands/info.js").command(Discord, client, message);
+            require("./commands/info.js").command(Discord, client, message);
             break;
 
         default:
