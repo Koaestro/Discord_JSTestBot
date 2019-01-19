@@ -1,0 +1,2 @@
+nodemon testBot.js
+pause
