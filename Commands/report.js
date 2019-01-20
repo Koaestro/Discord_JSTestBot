@@ -2,6 +2,9 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const Report = require("../models/reports.js");
 
+mongoose.connect('mongodb://localhost/Reports', {
+    useNewUrlParser: true
+});
 
 
 module.exports = class report {
@@ -15,8 +18,6 @@ module.exports = class report {
     async run(bot, message, args) {
 
         await message.delete();
-
-        mongoose.connect('mongodb://localhost/Reports');
 
         let rUser = message.mentions.members.first();
         if (!rUser) return message.reply("Couldn't find user");

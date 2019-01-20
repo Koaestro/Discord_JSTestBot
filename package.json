@@ -12,7 +12,10 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "djs-commands": "^1.2.2",
+    "ffmpeg": "0.0.4",
     "mongoose": "^5.4.5",
-    "superagent": "^4.1.0"
+    "opusscript": "0.0.6",
+    "superagent": "^4.1.0",
+    "ytdl-core": "^0.29.1"
   }
 }

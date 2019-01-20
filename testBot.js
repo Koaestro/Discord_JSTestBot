@@ -9,6 +9,8 @@ const CH = new CommandHandler({
 
 });
 
+global.servers = {};
+
 bot.on("ready", () => {
   console.log("\nReady!");
 
@@ -18,6 +20,14 @@ bot.on("ready", () => {
 bot.on("message", (message) => {
 
     if (message.author.bot) return;
+
+    // Deletes users message
+    /*
+    switch(message.author.username){
+        case "Koaestro":
+            message.delete();
+    }
+    */
 
     let args = message.content.split(" ");
     let command = args[0];
