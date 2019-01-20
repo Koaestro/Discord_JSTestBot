@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const tokenfile = require("./tokenfile.json");
-// const fs = require("fs");
 const { CommandHandler } = require(`djs-commands`);
 const CH = new CommandHandler({
 
