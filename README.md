@@ -3,3 +3,5 @@
 Need node installed as well as nodemon for the run.bat
 
 A discord bot written in javascript used for testing and experimenting
+
+OUTDATED! Uses old version of Discord.js
